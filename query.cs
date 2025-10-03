@@ -13,10 +13,10 @@ namespace bgpSearch
     public static class query
     {
 
-        public static async Task<ipv4Prefix> ipv4QueryAsync(string prefix)
+        public static async Task<IpPrefix> IpQueryAsync(string prefix)
         {
             string url = $"https://api.bgpview.io/prefix/{prefix}";
-            ipv4Prefix ipv4Data = new ipv4Prefix();
+            IpPrefix ipData = new IpPrefix();
 
             using (HttpClient client = new HttpClient())
             {
@@ -37,21 +37,22 @@ namespace bgpSearch
 
                     JsonElement data = root.GetProperty("data");
 
-                    ipv4Data.prefix = data.GetProperty("prefix").GetString();
-                    ipv4Data.ip = data.GetProperty("ip").GetString();
-                    ipv4Data.cidr = data.GetProperty("cidr").GetInt16();
-                    ipv4Data.name = data.GetProperty("name").GetString();
+                    ipData.prefix = data.GetProperty("prefix").GetString();
+                    ipData.ip = data.GetProperty("ip").GetString();
+                    ipData.cidr = data.GetProperty("cidr").GetInt16();
+                    ipData.name = data.GetProperty("name").GetString();
 
                     JsonElement asns = data.GetProperty("asns");
                     foreach (JsonElement asn in asns.EnumerateArray())
                     {
-                        ipv4Data.description = asn.GetProperty("description").GetString();
-                        ipv4Data.country = asn.GetProperty("country_code").GetString();
+                        ipData.asn = asn.GetProperty("description").GetInt32();
+                        ipData.description = asn.GetProperty("description").GetString();
+                        ipData.country = asn.GetProperty("country_code").GetString();
                     }
                 }
             }
 
-            return ipv4Data;
+            return ipData;
         }
 
         public static async Task<bgpASN> bgpAsnQueryAsync(string asNumber)
@@ -86,8 +87,8 @@ namespace bgpSearch
 
             string url = $"https://api.bgpview.io/asn/{asNumber}/prefixes";
             bgpASN bgpASN = new bgpASN();
-            bgpASN.lstPrefixesV4 = new List<ipv4Prefix>();
-            bgpASN.lstPrefixesV6 = new List<ipv6Prefix>();
+            bgpASN.lstPrefixesV4 = new List<IpPrefix>();
+            bgpASN.lstPrefixesV6 = new List<IpPrefix>();
             bgpASN.asn = int.Parse(asNumber);
 
             using (HttpClient client = new HttpClient())
@@ -105,7 +106,7 @@ namespace bgpSearch
                     {
                         foreach (JsonElement prefix in ipv4_prefixes.EnumerateArray())
                         {
-                            ipv4Prefix ipv4Data = new ipv4Prefix
+                            IpPrefix ipv4Data = new IpPrefix
                             {
                                 prefix = prefix.GetProperty("prefix").GetString(),
                                 ip = prefix.GetProperty("ip").GetString(),
@@ -122,7 +123,7 @@ namespace bgpSearch
                     {
                         foreach (JsonElement prefix in ipv6_prefixes.EnumerateArray())
                         {
-                            ipv6Prefix ipv6Data = new ipv6Prefix
+                            IpPrefix ipv6Data = new IpPrefix
                             {
                                 prefix = prefix.GetProperty("prefix").GetString(),
                                 ip = prefix.GetProperty("ip").GetString(),

@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace bgpSearch
 {
-    public abstract class ipPrefix
+    public class IpPrefix
     {
         public string prefix { get; set; }
         public string ip { get; set; }
         public int cidr { get; set; }
+        public int asn { get; set; }
         public string name { get; set; }
         public string description { get; set; }
         public string country { get; set; }

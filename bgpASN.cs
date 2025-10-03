@@ -13,8 +13,8 @@ namespace bgpSearch
         public string description { get; set; }
         public string country { get; set; }
         public string website { get; set; }
-        public List<ipv4Prefix> lstPrefixesV4 { get; set; }
-        public List<ipv6Prefix> lstPrefixesV6 { get; set; }
+        public List<IpPrefix> lstPrefixesV4 { get; set; }
+        public List<IpPrefix> lstPrefixesV6 { get; set; }
         public List<bgpPeer> lstPeers { get; set; }
     }
 

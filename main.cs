@@ -27,7 +27,7 @@ namespace bgpSearch
                     consulta = args[1];
                     if (regex.validarV4(consulta) || regex.validarV6(consulta))
                     {
-                        ipv4Prefix ipv4 = await query.ipv4QueryAsync(args[1]);
+                        IpPrefix ipv4 = await query.IpQueryAsync(args[1]);
                         if(ipv4 != null)
                         {
                             print.MostrarIpv4(ipv4);

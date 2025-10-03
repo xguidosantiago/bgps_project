@@ -24,16 +24,16 @@ namespace bgpSearch
             Console.WriteLine("  -r <ASN>         : Búsqueda por prefijos del ASN (ej: -r 22927)");
             Console.WriteLine("  -e <ASN>         : Búsqueda por peers del ASN (ej: -e 22927)");
         }
-        public static void MostrarIpv4(ipv4Prefix ipv4)
+        public static void MostrarIpv4(IpPrefix ipData)
         {
             Console.WriteLine("IP Prefix Info");
             Console.WriteLine("--------------------------------------------------");
-            Console.WriteLine($"{"Prefijo:",-14} {ipv4.prefix}");
-            Console.WriteLine($"{"IP:",-14} {ipv4.ip}");
-            Console.WriteLine($"{"Máscara:",-14} {ipv4.cidr}");
-            Console.WriteLine($"{"Nombre:",-14} {ipv4.name}");
-            Console.WriteLine($"{"Descripción:",-14} {ipv4.description}");
-            Console.WriteLine($"{"País:",-14} {ipv4.country}");
+            Console.WriteLine($"{"Prefijo:",-14} {ipData.prefix}");
+            Console.WriteLine($"{"IP:",-14} {ipData.ip}");
+            Console.WriteLine($"{"Máscara:",-14} {ipData.cidr}");
+            Console.WriteLine($"{"Nombre:",-14} {ipData.name}");
+            Console.WriteLine($"{"Descripción:",-14} {ipData.description}");
+            Console.WriteLine($"{"País:",-14} {ipData.country}");
             Console.WriteLine();
         }
 

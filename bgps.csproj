@@ -88,8 +88,6 @@
   <ItemGroup>
     <Compile Include="bgpASN.cs" />
     <Compile Include="bgpPeer.cs" />
-    <Compile Include="ipv4Prefix.cs" />
-    <Compile Include="ipv6Prefix.cs" />
     <Compile Include="main.cs" />
     <Compile Include="ipPrefix.cs" />
     <Compile Include="print.cs" />
