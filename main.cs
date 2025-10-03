@@ -30,7 +30,7 @@ namespace bgpSearch
                         IpPrefix ipv4 = await query.IpQueryAsync(args[1]);
                         if(ipv4 != null)
                         {
-                            print.MostrarIpv4(ipv4);
+                            print.mostrarIP(ipv4);
                         }
                     }
                     else

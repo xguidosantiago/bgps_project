@@ -45,7 +45,7 @@ namespace bgpSearch
                     JsonElement asns = data.GetProperty("asns");
                     foreach (JsonElement asn in asns.EnumerateArray())
                     {
-                        ipData.asn = asn.GetProperty("description").GetInt32();
+                        ipData.asn = asn.GetProperty("asn").GetInt32();
                         ipData.description = asn.GetProperty("description").GetString();
                         ipData.country = asn.GetProperty("country_code").GetString();
                     }
